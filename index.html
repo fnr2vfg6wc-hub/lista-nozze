@@ -5,13 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Regalo di nozze</title>
 
-  <!-- Fonts close to wedding-stationery feel -->
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Italianno&family=Cormorant+Garamond:wght@400;500&display=swap" rel="stylesheet">
 
   <style>
-    :root{
-      --ink: rgba(255,255,255,0.95);
+    :root {
+      --ink: rgba(255,255,255,0.96);
       --shadow: rgba(0,0,0,0.35);
+      --btn-bg: rgba(0,0,0,0.16);
     }
 
     html, body {
@@ -19,98 +20,95 @@
       margin: 0;
     }
 
-    /* Center a “poster” that keeps the same aspect ratio as your image */
     body {
       display: grid;
       place-items: center;
       background: #111;
-      padding: 0;
       font-family: "Cormorant Garamond", serif;
     }
 
+    /* Poster with fixed proportion like the artwork */
     .poster {
-      position: relative;
       width: min(520px, 100vw);
-      aspect-ratio: 2 / 3; /* matches your image’s portrait proportions */
+      aspect-ratio: 2 / 3;
       background: url("sfondo_fiori.png") center/cover no-repeat;
+      position: relative;
       overflow: hidden;
     }
 
-    /* Text overlay tuned to the sample layout */
+    /* Single flow layout to avoid overlaps on any screen */
+    .content {
+      height: 100%;
+      box-sizing: border-box;
+      padding: clamp(56px, 10vw, 84px) clamp(18px, 4.5vw, 28px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(10px, 2.2vw, 16px);
+      text-align: center;
+    }
+
     .title {
-      position: absolute;
-      top: 16%;
-      left: 50%;
-      transform: translateX(-50%);
       font-family: "Italianno", cursive;
-      font-size: clamp(42px, 8.2vw, 64px);
+      font-size: clamp(44px, 9vw, 66px);
+      line-height: 1.0;
       color: var(--ink);
       text-shadow: 0 2px 0 var(--shadow);
-      white-space: nowrap;
+      margin: 0;
     }
 
     .subtitle {
-      position: absolute;
-      top: 27%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 86%;
-      text-align: center;
-      font-size: clamp(16px, 3.4vw, 22px);
-      line-height: 1.25;
+      font-size: clamp(15px, 3.7vw, 22px);
+      line-height: 1.35;
       color: var(--ink);
       text-shadow: 0 2px 0 var(--shadow);
+      margin: 0;
+      max-width: 34ch;
     }
 
     .divider {
-      position: absolute;
-      top: 39%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 58%;
+      width: min(320px, 70%);
       height: 2px;
       background: var(--ink);
       opacity: 0.9;
       box-shadow: 0 2px 0 var(--shadow);
+      margin-top: 4px;
+      margin-bottom: 2px;
     }
 
     .ibanline {
-      position: absolute;
-      top: 45%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 90%;
-      text-align: center;
-      font-size: clamp(16px, 3.2vw, 22px);
+      font-size: clamp(15px, 3.5vw, 22px);
+      line-height: 1.3;
       letter-spacing: 0.02em;
       color: var(--ink);
       text-shadow: 0 2px 0 var(--shadow);
       user-select: all;
       word-break: break-word;
-      padding: 0 10px;
-      box-sizing: border-box;
+      max-width: 40ch;
+      padding: 0 6px;
+      margin: 0;
     }
 
     .btnwrap {
-      position: absolute;
-      top: 62%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 62%;
-      display: grid;
-      place-items: center;
+      width: min(320px, 70%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      margin-top: clamp(6px, 1.5vw, 10px);
     }
 
     button {
       width: 100%;
       padding: 12px 14px;
       font-family: "Cormorant Garamond", serif;
-      font-size: clamp(14px, 2.8vw, 18px);
+      font-size: clamp(13px, 3.0vw, 18px);
       letter-spacing: 0.14em;
       text-transform: uppercase;
       border: 2px solid rgba(255,255,255,0.9);
-      background: rgba(0,0,0,0.15);
-      color: rgba(255,255,255,0.95);
+      background: var(--btn-bg);
+      color: var(--ink);
       cursor: pointer;
       box-shadow: 0 2px 0 var(--shadow);
       backdrop-filter: blur(1px);
@@ -121,34 +119,34 @@
     }
 
     .hint {
-      margin-top: 10px;
-      font-size: clamp(12px, 2.6vw, 15px);
-      color: rgba(255,255,255,0.9);
-      text-shadow: 0 2px 0 var(--shadow);
       min-height: 1.2em;
-      text-align: center;
+      font-size: clamp(12px, 2.8vw, 15px);
+      color: rgba(255,255,255,0.92);
+      text-shadow: 0 2px 0 var(--shadow);
+      margin: 0;
     }
   </style>
 </head>
 
 <body>
   <main class="poster" aria-label="Regalo di nozze - IBAN">
-    <div class="title">Regalo di nozze</div>
+    <section class="content">
+      <h1 class="title">Regalo di nozze</h1>
 
-    <div class="subtitle">
-      La vostra presenza è per noi il dono più bello,<br>
-      Se desiderate contribuire al nostro viaggio di nozze:
-    </div>
+      <p class="subtitle">
+        La vostra presenza è per noi il dono più bello,<br>
+        se desiderate contribuire al nostro viaggio di nozze:
+      </p>
 
-    <div class="divider" aria-hidden="true"></div>
+      <div class="divider" aria-hidden="true"></div>
 
-    <!-- SOLO IBAN (come richiesto) -->
-    <div class="ibanline" id="iban">IBAN: IT73L0301503200000004352041</div>
+      <p class="ibanline" id="iban">IBAN: IT73L0301503200000004352041</p>
 
-    <div class="btnwrap">
-      <button type="button" onclick="copyIban()">Copia IBAN</button>
-      <div class="hint" id="hint" aria-live="polite"></div>
-    </div>
+      <div class="btnwrap">
+        <button type="button" onclick="copyIban()">Copia IBAN</button>
+        <p class="hint" id="hint" aria-live="polite"></p>
+      </div>
+    </section>
   </main>
 
   <script>
