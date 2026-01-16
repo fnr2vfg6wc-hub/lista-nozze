@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Regalo di nozze</title>
+
+  <!-- Fonts close to wedding-stationery feel -->
+  <link href="https://fonts.googleapis.com/css2?family=Italianno&family=Cormorant+Garamond:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --ink: rgba(255,255,255,0.95);
+      --shadow: rgba(0,0,0,0.35);
+    }
+
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+
+    /* Center a “poster” that keeps the same aspect ratio as your image */
+    body {
+      display: grid;
+      place-items: center;
+      background: #111;
+      padding: 0;
+      font-family: "Cormorant Garamond", serif;
+    }
+
+    .poster {
+      position: relative;
+      width: min(520px, 100vw);
+      aspect-ratio: 2 / 3; /* matches your image’s portrait proportions */
+      background: url("sfondo_fiori.png") center/cover no-repeat;
+      overflow: hidden;
+    }
+
+    /* Text overlay tuned to the sample layout */
+    .title {
+      position: absolute;
+      top: 16%;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: "Italianno", cursive;
+      font-size: clamp(42px, 8.2vw, 64px);
+      color: var(--ink);
+      text-shadow: 0 2px 0 var(--shadow);
+      white-space: nowrap;
+    }
+
+    .subtitle {
+      position: absolute;
+      top: 27%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 86%;
+      text-align: center;
+      font-size: clamp(16px, 3.4vw, 22px);
+      line-height: 1.25;
+      color: var(--ink);
+      text-shadow: 0 2px 0 var(--shadow);
+    }
+
+    .divider {
+      position: absolute;
+      top: 39%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 58%;
+      height: 2px;
+      background: var(--ink);
+      opacity: 0.9;
+      box-shadow: 0 2px 0 var(--shadow);
+    }
+
+    .ibanline {
+      position: absolute;
+      top: 45%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      text-align: center;
+      font-size: clamp(16px, 3.2vw, 22px);
+      letter-spacing: 0.02em;
+      color: var(--ink);
+      text-shadow: 0 2px 0 var(--shadow);
+      user-select: all;
+      word-break: break-word;
+      padding: 0 10px;
+      box-sizing: border-box;
+    }
+
+    .btnwrap {
+      position: absolute;
+      top: 62%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 62%;
+      display: grid;
+      place-items: center;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px 14px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(14px, 2.8vw, 18px);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      border: 2px solid rgba(255,255,255,0.9);
+      background: rgba(0,0,0,0.15);
+      color: rgba(255,255,255,0.95);
+      cursor: pointer;
+      box-shadow: 0 2px 0 var(--shadow);
+      backdrop-filter: blur(1px);
+    }
+
+    button:active {
+      transform: translateY(1px);
+    }
+
+    .hint {
+      margin-top: 10px;
+      font-size: clamp(12px, 2.6vw, 15px);
+      color: rgba(255,255,255,0.9);
+      text-shadow: 0 2px 0 var(--shadow);
+      min-height: 1.2em;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="poster" aria-label="Regalo di nozze - IBAN">
+    <div class="title">Regalo di nozze</div>
+
+    <div class="subtitle">
+      La vostra presenza è per noi il dono più bello,<br>
+      Se desiderate contribuire al nostro viaggio di nozze:
+    </div>
+
+    <div class="divider" aria-hidden="true"></div>
+
+    <!-- SOLO IBAN (come richiesto) -->
+    <div class="ibanline" id="iban">IBAN: IT73L0301503200000004352041</div>
+
+    <div class="btnwrap">
+      <button type="button" onclick="copyIban()">Copia IBAN</button>
+      <div class="hint" id="hint" aria-live="polite"></div>
+    </div>
+  </main>
+
+  <script>
+    function copyIban() {
+      const iban = "IT73L0301503200000004352041";
+      navigator.clipboard.writeText(iban).then(() => {
+        const h = document.getElementById("hint");
+        h.textContent = "IBAN copiato ✓";
+        setTimeout(() => h.textContent = "", 2000);
+      }).catch(() => {
+        document.getElementById("hint").textContent = "Seleziona e copia manualmente l'IBAN.";
+      });
+    }
+  </script>
+</body>
+</html>
