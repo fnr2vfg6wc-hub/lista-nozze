@@ -5,14 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Regalo di nozze</title>
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Italianno&family=Cormorant+Garamond:wght@400;500&display=swap" rel="stylesheet">
+  <!-- Fonts very close to wedding invitation -->
+  <link href="https://fonts.googleapis.com/css2?family=Italianno&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --ink: rgba(255,255,255,0.96);
+      --ink: #ffffff;
       --shadow: rgba(0,0,0,0.35);
-      --btn-bg: rgba(0,0,0,0.16);
     }
 
     html, body {
@@ -24,128 +23,105 @@
       display: grid;
       place-items: center;
       background: #111;
-      font-family: "Cormorant Garamond", serif;
+      font-family: "Libre Baskerville", serif;
     }
 
-    /* Poster with fixed proportion like the artwork */
     .poster {
       width: min(520px, 100vw);
       aspect-ratio: 2 / 3;
       background: url("sfondo_fiori.png") center/cover no-repeat;
       position: relative;
-      overflow: hidden;
     }
 
-    /* Single flow layout to avoid overlaps on any screen */
     .content {
       height: 100%;
-      box-sizing: border-box;
-      padding: clamp(56px, 10vw, 84px) clamp(18px, 4.5vw, 28px);
+      padding: clamp(64px, 10vw, 96px) clamp(22px, 5vw, 34px);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: clamp(10px, 2.2vw, 16px);
       text-align: center;
+      gap: 16px;
     }
 
-    .title {
+    h1 {
       font-family: "Italianno", cursive;
-      font-size: clamp(44px, 9vw, 66px);
-      line-height: 1.0;
+      font-size: clamp(46px, 9vw, 68px);
+      font-weight: 400;
       color: var(--ink);
       text-shadow: 0 2px 0 var(--shadow);
       margin: 0;
     }
 
     .subtitle {
-      font-size: clamp(15px, 3.7vw, 22px);
-      line-height: 1.35;
+      font-size: clamp(15px, 3.4vw, 21px);
+      line-height: 1.4;
       color: var(--ink);
       text-shadow: 0 2px 0 var(--shadow);
-      margin: 0;
-      max-width: 34ch;
+      max-width: 36ch;
     }
 
     .divider {
-      width: min(320px, 70%);
-      height: 2px;
+      width: 60%;
+      height: 1.5px;
       background: var(--ink);
-      opacity: 0.9;
-      box-shadow: 0 2px 0 var(--shadow);
-      margin-top: 4px;
-      margin-bottom: 2px;
+      opacity: 0.85;
     }
 
-    .ibanline {
-      font-size: clamp(15px, 3.5vw, 22px);
-      line-height: 1.3;
-      letter-spacing: 0.02em;
+    .iban {
+      font-size: clamp(15px, 3.2vw, 21px);
+      letter-spacing: 0.04em;
       color: var(--ink);
       text-shadow: 0 2px 0 var(--shadow);
-      user-select: all;
       word-break: break-word;
+      user-select: all;
       max-width: 40ch;
-      padding: 0 6px;
-      margin: 0;
-    }
-
-    .btnwrap {
-      width: min(320px, 70%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-      margin-top: clamp(6px, 1.5vw, 10px);
     }
 
     button {
-      width: 100%;
-      padding: 12px 14px;
-      font-family: "Cormorant Garamond", serif;
-      font-size: clamp(13px, 3.0vw, 18px);
-      letter-spacing: 0.14em;
+      margin-top: 8px;
+      padding: 12px 20px;
+      font-family: "Libre Baskerville", serif;
+      font-size: 13px;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      border: 2px solid rgba(255,255,255,0.9);
-      background: var(--btn-bg);
+      background: transparent;
+      border: 2px solid var(--ink);
       color: var(--ink);
       cursor: pointer;
-      box-shadow: 0 2px 0 var(--shadow);
-      backdrop-filter: blur(1px);
     }
 
-    button:active {
-      transform: translateY(1px);
+    button:hover {
+      background: rgba(255,255,255,0.15);
     }
 
     .hint {
       min-height: 1.2em;
-      font-size: clamp(12px, 2.8vw, 15px);
-      color: rgba(255,255,255,0.92);
-      text-shadow: 0 2px 0 var(--shadow);
-      margin: 0;
+      font-size: 13px;
+      color: var(--ink);
+      text-shadow: 0 1px 0 var(--shadow);
     }
   </style>
 </head>
 
 <body>
-  <main class="poster" aria-label="Regalo di nozze - IBAN">
+  <main class="poster">
     <section class="content">
-      <h1 class="title">Regalo di nozze</h1>
+      <h1>Regalo di nozze</h1>
 
       <p class="subtitle">
-        La vostra presenza è per noi il dono più bello,<br>
-        se desiderate contribuire al nostro viaggio di nozze:
+        La vostra presenza è per noi il dono più bello.<br>
+        Se desiderate contribuire al nostro viaggio di nozze:
       </p>
 
-      <div class="divider" aria-hidden="true"></div>
+      <div class="divider"></div>
 
-      <p class="ibanline" id="iban">IBAN: IT73L0301503200000004352041</p>
-
-      <div class="btnwrap">
-        <button type="button" onclick="copyIban()">Copia IBAN</button>
-        <p class="hint" id="hint" aria-live="polite"></p>
+      <div class="iban" id="iban">
+        IBAN: IT73L0301503200000004352041
       </div>
+
+      <button onclick="copyIban()">Copia IBAN</button>
+      <div class="hint" id="hint"></div>
     </section>
   </main>
 
@@ -153,11 +129,8 @@
     function copyIban() {
       const iban = "IT73L0301503200000004352041";
       navigator.clipboard.writeText(iban).then(() => {
-        const h = document.getElementById("hint");
-        h.textContent = "IBAN copiato ✓";
-        setTimeout(() => h.textContent = "", 2000);
-      }).catch(() => {
-        document.getElementById("hint").textContent = "Seleziona e copia manualmente l'IBAN.";
+        document.getElementById("hint").innerText = "IBAN copiato ✓";
+        setTimeout(() => document.getElementById("hint").innerText = "", 2000);
       });
     }
   </script>
